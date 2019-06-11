@@ -1,0 +1,28 @@
+body{
+    margin:0;
+    padding:0;
+}
+header{
+    padding: 10px 0;
+    border-bottom: $border;
+    img{
+        height: 50px;;
+    }
+    .nav-menu{
+        margin: 0;
+        list-style:none;
+        text-align: right;
+        li{
+            display: inline-block;
+            line-height:50px;
+            margin: 0 10px;
+        }
+    }
+}
+
+//resusable components
+.wrapper{
+    padding: 0 15px;
+    max-width: 95%;
+    margin: auto;
+}
