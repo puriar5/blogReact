@@ -9,7 +9,7 @@ export default class Header extends Component {
                <div className="wrapper">
                    <Row gutter={30}>
                        <Col span={12}>
-                       <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Lineage_OS_Logo.png" alt="Brand" />
+                       <img src="/images/Logo.png" alt="Brand" />
                        </Col>
                        <Col span={12}>
                            <ul className="nav-menu">

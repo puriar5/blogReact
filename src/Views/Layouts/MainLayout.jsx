@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../Partials/Header';
+import Footer from '../Partials/Footer';
 
 export default class MainLayout extends Component {
     render() {
@@ -7,10 +8,11 @@ export default class MainLayout extends Component {
             <div>
                 <Header />
                 <main>
+                <div className="wrapper">
                     {this.props.children}
+                    </div>
                 </main>
-                <footer>
-                </footer>                
+                <Footer />             
             </div>
         )
     }

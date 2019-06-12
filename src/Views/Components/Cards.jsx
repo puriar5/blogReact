@@ -1,27 +1,28 @@
-import React, { Component }  from 'react'
-import  { Card, Icon, Avatar } from 'antd';
+import React, { Component } from 'react'
+import { Card } from 'antd';
 import { Col } from 'antd';
-const { Meta } = Card;
+
+const {Grid} = Card; 
+
+const gridStyleMain ={
+  width:'100%',
+  height:'100%'
+};
 
 
 export default class Cards extends Component {
-    render() {
-        return(
-            
-            <Col className="gutter-row" span={8}>
-            <Card
-              cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-              
-            >
-              <Meta
-                avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                title="Card title"
-                description="This is the description"
-              />
-            </Card>
-            </Col>
-    
-            
-        )
-    }
+  render() {
+    return (
+      
+
+      <Col className="gutter-row" span={12}>
+        <Grid style={gridStyleMain}>
+        <img alt="example" src="/images/panda.png" style={gridStyleMain}/>
+        </Grid>
+        
+      </Col>
+
+
+    )
+  }
 }
