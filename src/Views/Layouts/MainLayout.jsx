@@ -9,6 +9,7 @@ export default class MainLayout extends Component {
                 <Header />
                 <main>
                 <div className="wrapper">
+                    {this.props.data}
                     {this.props.children}
                     </div>
                 </main>

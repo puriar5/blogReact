@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Card, Col, Row } from "antd";
+import { Card, Col, Row, Pagination  } from "antd";
 import MainLayout from "./Layouts/MainLayout";
 import Sidebar from "./Components/Sidebar";
+import Axios from "axios";
 // import BlogThumb from './Components/BlogThumb'
+
+
 
 const gridStyleMain = {
   width: "100%",
@@ -16,39 +19,59 @@ const cardStyle = {
 };
 
 export default class Blogs extends Component {
+  state = {
+    blogs: []
+  }
+
+  componentDidMount() {
+    Axios
+    .get(`/blogs`)
+      .then((data) => {
+        // let blogs = data.data.sort((a, b) => {return b.id - a.id});
+        let blogs = data.data.reverse();
+        this.setState({
+          blogs
+        })
+      })
+      .catch(err => {
+        console.log(err.response.status);
+      })
+  }
   render() {
-    var num = [1, 2, 3, 4, 5, 6];
     return (
       <MainLayout>
         <h1>Blogs</h1>
         <Row>
           <Col span={20} push={4}>
             <Row gutter={20}>
-              {num.map(item => (
-                <Col span={8} key={item}>
-                  <Link to={`/blogs/${item}`}>
-                    <div className="hvrbox">
-                      <Card.Grid style={cardStyle}>
-                        <img
-                          alt="example"
-                          src="/images/panda.png"
-                          style={gridStyleMain}
-                          className="hvrbox-layer_bottom"
-                        />
-                      </Card.Grid>
-                      <div className="hvrbox-layer_top">
-                        <div className="hvrbox-text">Blog {item}</div>
+              {this.state.blogs.map((blog) => {
+                let {id,title, image} = blog;
+                return (
+                  <Col span={8} key={id}>
+                    <Link to={`/blogs/${id}`}>
+                      <div className="hvrbox">
+                        <Card.Grid style={cardStyle}>
+                          <img alt={"example"+id} src={image}
+                            style={gridStyleMain}
+                            className="hvrbox-layer_bottom"
+                          />
+                        </Card.Grid>
+                        <div className="hvrbox-layer_top">
+                          <div className="hvrbox-text">{title}</div>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                </Col>
-              ))}
+                    </Link>
+                  </Col>
+                );
+              })}
+              <Pagination defaultCurrent={1} total={50} />
             </Row>
           </Col>
           <Col span={4} pull={20}>
             <Sidebar />
           </Col>
         </Row>
+        
       </MainLayout>
     );
   }

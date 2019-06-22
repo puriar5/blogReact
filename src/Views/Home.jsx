@@ -5,6 +5,8 @@ import Cards from "./Components/Cards";
 import Picks from "./Components/Picks";
 import Buttons from "./Components/Buttons";
 
+
+
 const gridStyle = {
   width: "50%",
   textAlign: "center",
@@ -22,6 +24,10 @@ export default class Home extends Component {
     return (
       <MainLayout>
         <h1>Home</h1>
+        <Picks />
+        <Buttons />
+        <br />
+        <br />
         <Row type="flex">
           <Cards />
           <Col span={12}>
@@ -39,11 +45,6 @@ export default class Home extends Component {
             </Row>
           </Col>
         </Row>
-
-        <br />
-        <br />
-        <Picks />
-        <Buttons />
       </MainLayout>
     );
   }

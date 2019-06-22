@@ -35,6 +35,24 @@ footer {
   border-top: 1px solid #ddd;
 }
 
+/* Starting state of animation */
+.fade-enter {
+  right: 100px;
+}
+
+/* end state of animation */
+.fade-enter-active {
+  right: 0;
+  transition: 0.5s ease-in all;
+}
+
+/* Axios Person List UL LI*/
+.PersonList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .hvrbox,
 .hvrbox * {
   box-sizing: border-box;

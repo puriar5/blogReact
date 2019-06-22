@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Axios from 'axios'
 import { Link } from "react-router-dom";
 import { Typography, Card, Col, Row } from "antd";
 const { Title } = Typography;
@@ -15,31 +16,57 @@ const cardStyle = {
 };
 
 export default class Picks extends Component {
+  state ={
+    blogs: [],
+}
+
+componentDidMount() {
+    Axios.get(`/blogs`)
+    .then((data) => {
+      let rowblogs = data.data.reverse();
+
+      let blogs = rowblogs.filter((obj, i) =>{
+        return i<3
+      })
+        this.setState({
+          blogs
+        })
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
   render() {
-    var num = [1, 2, 3];
     return (
       <div style={{ background: "#ECECEC", padding: "30px" }}>
         <Title>Top Picks</Title>
         <Row gutter={16}>
-          {num.map(item => (
-            <Col span={8}>
-              <Link to={`/blogs/${item}`}>
+        {
+          this.state.blogs.map((blog) => {
+            let {id, title, image } = blog;
+            return (
+            <Col span={8} key={id}>
+              <Link to={`/blogs/${id}`}>
                 <div className="hvrbox">
                   <Card.Grid style={cardStyle}>
                     <img
-                      alt="example"
-                      src="/images/panda.png"
+                      alt={"example"+id}
+                      src={image}
                       style={gridStyleMain}
                       className="hvrbox-layer_bottom"
                     />
                   </Card.Grid>
                   <div className="hvrbox-layer_top">
-                    <div className="hvrbox-text">Blog{item}</div>
+                    <div className="hvrbox-text">{title}</div>
                   </div>
                 </div>
               </Link>
             </Col>
-          ))}
+          )
+            
+             
+        })
+        }
         </Row>
       </div>
       //   mountNode

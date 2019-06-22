@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import  { Row, Col } from 'antd';
+import  { Row, Col, Button } from 'antd';
 
 export default class Header extends Component {
+    handleSignout = () => {
+        localStorage.isAuthenticated = 'false'
+        window.location.reload();
+    }
     render() {
         return (
            <header>
@@ -22,6 +26,24 @@ export default class Header extends Component {
                                <li>
                                    <Link to="/contact">Contact</Link>
                                </li>
+                               <li>
+                                   <Link to="/admin/dashboard">Dashboard</Link>
+                               </li>
+                               {
+                                    localStorage.isAuthenticated === "true" ? 
+                                    <li>
+                                        <Button type="danger" onClick={this.handleSignout}>
+                                            Signout
+                                        </Button>
+                                    </li> :
+                                    <li>
+                                        <Link to="/login">
+                                            <Button type="primary" block>
+                                                Login
+                                            </Button>
+                                        </Link>
+                                    </li>
+                                }
 
                            </ul>
                        </Col>
